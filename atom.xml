@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jasonWang1998.github.io</id>
     <title>小明家</title>
-    <updated>2021-05-25T14:23:46.322Z</updated>
+    <updated>2021-05-26T07:17:19.709Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jasonWang1998.github.io"/>
     <link rel="self" href="https://jasonWang1998.github.io/atom.xml"/>
@@ -10,6 +10,114 @@
     <logo>https://jasonWang1998.github.io/images/avatar.png</logo>
     <icon>https://jasonWang1998.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 小明家</rights>
+    <entry>
+        <title type="html"><![CDATA[Mac  新开始-（软件安装）]]></title>
+        <id>https://jasonWang1998.github.io/post/mac-xin-kai-shi/</id>
+        <link href="https://jasonWang1998.github.io/post/mac-xin-kai-shi/">
+        </link>
+        <updated>2021-05-26T06:57:13.000Z</updated>
+        <content type="html"><![CDATA[<p>第一次使用mac，在Jonathan和Sniper俩位大哥的带领下安装我听都没听过的牛X工具。</p>
+<ol>
+<li><strong>安装iterm2(好用的命令行工具)</strong><br>
+相关链接：<code>https://zhuanlan.zhihu.com/p/41745503</code><br>
+注意事项：xcode-select –install 这里的-是有问题的；</li>
+</ol>
+<p>这里安装了git、zsh、agnoster主题、Ob-My-Zsh(管理 zsh 的配置)</p>
+<p>相关代码：</p>
+<pre><code>  ```bash
+  # 安装iTerm2
+  xcode-select --install
+  # 检查zsh是否安装
+  zsh --version
+  # 没有装的话，安装zsh
+  brew install zsh zsh-completions
+  # 安装Oh-My-Zsh
+  crul安装：sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;
+  wget安装：sh -c &quot;$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&quot;
+  # 安装 Powerline fonts
+  git clone https://github.com/powerline/fonts.git --depth=1; cd fonts; ./install.sh; cd ..; rm -rf fonts
+  # 然后到 iterm2 配置，设置字体 1. 打开 Preferences，选择 Profiles
+  # 选择 Text，点击 Change Font 。。。这里可以去看网页上介绍
+  # 查看所有主题
+  ls ~/.oh-my-zsh/themes
+  # 修改主题
+  open -e ~/.zshrc
+  将ZSH_THEME 的值改为 ZSH_THEME=&quot;agnoster&quot;；
+  # 修改命令提示符 -- DEFAULT_USER 的值必须要是系统用户名才能生效
+  DEFAULT_USER=&quot;user&quot;
+  #  配置 zsh 命令语法高亮
+  bash git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 
+  # 修改 ~/.zshrc 添加插件
+  bash     # 注意：zsh-syntax-highlighting 必须放在最后面（官方推荐）     
+  修改.zshrc 里面的内容：plugins=(git zsh-syntax-highlighting) 
+  ```
+</code></pre>
+<ol>
+<li><strong>安装时候总会弹窗提示有风险不让安装</strong><br>
+<code>sudo spctl --master-disable</code></li>
+<li><strong>配置小猫咪的终端翻墙 ,v2开始翻墙，unv2关闭翻墙</strong><br>
+<code>alias v2='export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7891'</code><br>
+<code>alias unv2='unset https_proxy http_proxy all_proxy'</code></li>
+<li><strong>安装 <code>nvm</code></strong><br>
+<code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash\n</code></li>
+<li><strong>查看<code>nvm</code>版本</strong><br>
+` nvm -v ``</li>
+<li>**``nvm<code>安装</code>nodejs<code>** 查看nodejs版本：</code>nvm ls-remote<code>安装制定nodejs版本：</code>nvm install v12.22.1`</li>
+<li><strong>使用安装的Nodejs版本，以后切换版本也是这样</strong><br>
+<code>nvm use v12.22.1</code></li>
+<li><strong>验证node版本</strong><br>
+<code>node -v</code></li>
+<li><strong>安装nrm</strong><br>
+<code>npm install -g nrm</code></li>
+<li><strong>配置远算npm仓库</strong><br>
+<code>nrm add ys http://10.0.1.25:4873/</code><br>
+<code>nrm use ys</code></li>
+<li><strong>配置mac公钥--用于代码仓库身份验证</strong><br>
+<code>ssh-keygen -t rsa -C binwangmac</code><br>
+<code>cat ~/.ssh/id_rsa.pub</code><br>
+克隆代码试一试：<code>g clone ssh:/xxxxxx</code></li>
+<li><strong>安装arc</strong></li>
+</ol>
+<pre><code class="language-bash">mkdir .tools
+cd .tools
+git clone https://github.com/phacility/arcanist.git
+cd arcanist/bin
+配置环境变量: open -e .zshrc
+复制代码到最后：export PATH=$PATH:~/.tools/arcanist/bin
+</code></pre>
+<h2 id="高效工具相关">高效工具相关</h2>
+<ol>
+<li>
+<p><strong>安装homebrew</strong><br>
+链接：<code>https://brew.sh/</code><br>
+代码：<code>/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</code></p>
+</li>
+<li>
+<p><strong>安装autojump</strong><br>
+功能：记录过你打开的文件夹，eg:<code>cd /abx/asd</code> 在使用autojump之后再次打开只需要使用<code>j ab</code> +<code>enter</code>就会进入到<code>abx/asd</code>的目标文件夹下<br>
+代码：<code>brew install autojump</code></p>
+</li>
+<li>
+<p><strong>安装微信插件(牛逼)</strong><br>
+代码：<code>v2</code> <code>g clone https://github.com/MustangYM/WeChatExtension-ForMac.git</code><br>
+<code>cd WeChatExtension-ForMac</code><br>
+<code>cd Rely</code><br>
+<code>bash Install.sh</code></p>
+</li>
+<li>
+<p><strong>截图工具</strong><br>
+相关链接：<code>https://zh.snipaste.com/</code><br>
+使用快捷键：f1调用截图工具，在工具调出来的任何时间都可以使用<code>,</code>和<code>.</code>来切换-&gt;查看历史</p>
+</li>
+<li>
+<p><strong>安装utools</strong><br>
+下载链接：<code>https://u.tools/</code><br>
+相关功能介绍：软件里面有很多实用的插件<br>
+快捷键：<code>option + space</code></p>
+</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://jasonWang1998.github.io/post/hello-gridea/</id>
